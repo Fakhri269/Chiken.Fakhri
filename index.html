@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayam kantin</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #21daff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #d3d2d2;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f9fa;
+            color: #555;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+            color: #555;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        input:focus {
+            border-color: #6c63ff;
+            outline: none;
+        }
+        button {
+            padding: 12px;
+            background-color: #3a4046;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #3bc90f;
+        }
+        h2 {
+            text-align: left;
+            margin-top: 15px;
+            font-size: 24.5px;
+        }
+        .rincian-container {
+            text-align: left;
+            margin-top: 15px;
+        }
+        .rincian-container table {
+            width: 100%;
+            border: none;
+        }
+        .rincian-container th, .rincian-container td {
+            border: none;
+            padding: 8px;
+        }
+        .rincian-container th {
+            font-size: 14px;
+            color: #666;
+        }
+        .rincian-container td {
+            font-size: 14px;
+        }
+        .logo-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid #ddd;
+            padding: 2px;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .logo-text {
+            font-size: 21px;
+            font-weight: bold;
+            color: #333;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hitung Pembayaran</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Harga</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Paha Ayam</td><td>Rp. 12.000</td></tr>
+                <tr><td>Dada Ayam</td><td>Rp. 12.000</td></tr>
+                <tr><td>Sayap Ayam</td><td>Rp. 10.000</td></tr>
+                <tr><td>Nasi</td><td>Rp. 5.000</td></tr>
+                <tr><td>Kentang Goreng</td><td>Rp. 5.000</td></tr>
+                <tr><td>Burger</td><td>Rp. 15.000</td></tr>
+                <tr><td>Kopi Es</td><td>Rp. 5.000</td></tr>
+                <tr><td>Es Milo</td><td>Rp. 6.000</td></tr>
+                <tr><td>Promo Spesial</td><td>Belanja Di Atas 10rb Mendapatkan Diskon 10%</td></tr>
+            </tbody>
+        </table>
+        <label for="pahaAyam">Paha Ayam:</label><input type="number" id="pahaAyam" value="0">
+        <label for="dadaAyam">Dada Ayam:</label><input type="number" id="dadaAyam" value="0">
+        <label for="sayapAyam">Sayap Ayam:</label><input type="number" id="sayapAyam" value="0">
+        <label for="nasi">Nasi:</label><input type="number" id="nasi" value="0">
+        <label for="kentang">Kentang Goreng:</label><input type="number" id="kentang" value="0">
+        <label for="burger">Burger:</label><input type="number" id="burger" value="0">
+        <label for="kopi">Kopi Es:</label><input type="number" id="kopi" value="0">
+        <label for="milo">Es Milo:</label><input type="number" id="milo" value="0">
+        <button onclick="hitungPembayaran()">Hitung</button>
+        <div class="rincian-container">
+            <h2>Rincian Pembelian:</h2>
+            <div id="rincianPembelian"></div>
+        </div>
+        <h2>Total Pembayaran:<br>Rp. <span id="totalPembayaran">0</span></h2>
+        <h2>Diskon:<br>Rp. <span id="diskon">0</span></h2>
+        <h2>Total Setelah Diskon:<br>Rp. <span id="totalSetelahDiskon">0</span></h2>
+        <h2>Bonus:<br><span id="bonus">-</span></h2>
+    </div>
+    <script>
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', { style: 'decimal' }).format(angka);
+        }
+
+        function hitungPembayaran() {
+            const hargaPahaAyam = 12000, hargaDadaAyam = 12000, hargaSayapAyam = 10000;
+            const hargaNasi = 5000, hargaKentang = 5000, hargaBurger = 15000;
+            const hargaKopi = 5000, hargaMilo = 6000;
+
+            const jumlahPahaAyam = parseInt(document.getElementById('pahaAyam').value) || 0;
+            const jumlahDadaAyam = parseInt(document.getElementById('dadaAyam').value) || 0;
+            const jumlahSayapAyam = parseInt(document.getElementById('sayapAyam').value) || 0;
+            const jumlahNasi = parseInt(document.getElementById('nasi').value) || 0;
+            const jumlahKentang = parseInt(document.getElementById('kentang').value) || 0;
+            const jumlahBurger = parseInt(document.getElementById('burger').value) || 0;
+            const jumlahKopi = parseInt(document.getElementById('kopi').value) || 0;
+            const jumlahMilo = parseInt(document.getElementById('milo').value) || 0;
+
+            const totalPahaAyam = jumlahPahaAyam * hargaPahaAyam;
+            const totalDadaAyam = jumlahDadaAyam * hargaDadaAyam;
+            const totalSayapAyam = jumlahSayapAyam * hargaSayapAyam;
+            const totalNasi = jumlahNasi * hargaNasi;
+            const totalKentang = jumlahKentang * hargaKentang;
+            const totalBurger = jumlahBurger * hargaBurger;
+            const totalKopi = jumlahKopi * hargaKopi;
+            const totalMilo = jumlahMilo * hargaMilo;
+
+            const total = totalPahaAyam + totalDadaAyam + totalSayapAyam + totalNasi + totalKentang + totalBurger + totalKopi + totalMilo;
+
+            // Menghitung diskon
+            let diskon = 0;
+            if (total >= 10000) {
+                diskon = total * 0.1;
+            }
+
+            const totalSetelahDiskon = total - diskon;
+
+// Menghitung bonus
+let bonus = [];
+if (jumlahKopi >= 1 || jumlahMilo >= 1) {
+    bonus.push(" 1 Es Teler");
+}
+if (jumlahDadaAyam >= 1 || jumlahPahaAyam >= 1) {
+    bonus.push(" 1 Sayap Ayam");
+}
+
+
+            // Menampilkan rincian pembelian
+            let rincian = "<table><tr><th>Item</th><th>Jumlah</th><th>Total</th></tr>";
+            if (jumlahPahaAyam > 0) rincian += `<tr><td>Paha Ayam</td><td>${jumlahPahaAyam}</td><td>Rp. ${formatRupiah(totalPahaAyam)}</td></tr>`;
+            if (jumlahDadaAyam > 0) rincian += `<tr><td>Dada Ayam</td><td>${jumlahDadaAyam}</td><td>Rp. ${formatRupiah(totalDadaAyam)}</td></tr>`;
+            if (jumlahSayapAyam > 0) rincian += `<tr><td>Sayap Ayam</td><td>${jumlahSayapAyam}</td><td>Rp. ${formatRupiah(totalSayapAyam)}</td></tr>`;
+            if (jumlahNasi > 0) rincian += `<tr><td>Nasi</td><td>${jumlahNasi}</td><td>Rp. ${formatRupiah(totalNasi)}</td></tr>`;
+            if (jumlahKentang > 0) rincian += `<tr><td>Kentang Goreng</td><td>${jumlahKentang}</td><td>Rp. ${formatRupiah(totalKentang)}</td></tr>`;
+            if (jumlahBurger > 0) rincian += `<tr><td>Burger</td><td>${jumlahBurger}</td><td>Rp. ${formatRupiah(totalBurger)}</td></tr>`;
+            if (jumlahKopi > 0) rincian += `<tr><td>Kopi</td><td>${jumlahKopi}</td><td>Rp. ${formatRupiah(totalKopi)}</td></tr>`;
+            if (jumlahMilo > 0) rincian += `<tr><td>Milo</td><td>${jumlahMilo}</td><td>Rp. ${formatRupiah(totalMilo)}</td></tr>`;
+            rincian += "</table>";
+
+            // Menampilkan hasil
+            document.getElementById('rincianPembelian').innerHTML = rincian;
+            document.getElementById('totalPembayaran').innerText = formatRupiah(total);
+            document.getElementById('diskon').innerText = formatRupiah(diskon);
+            document.getElementById('totalSetelahDiskon').innerText = formatRupiah(totalSetelahDiskon);
+            document.getElementById('bonus').innerText = bonus;
+        }
+    </script>
+</body>
+</html>
